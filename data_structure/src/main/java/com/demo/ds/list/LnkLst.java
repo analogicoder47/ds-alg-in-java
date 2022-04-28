@@ -8,7 +8,7 @@ public class LnkLst<T> {
 	}
 
 	public void insert2Head(LstNode<T> node) {
-		node.next = head;
+		node.setNext(head);
 		head = node;
 	}
 
@@ -19,11 +19,11 @@ public class LnkLst<T> {
 		}
 
 		LstNode<T> current = head;
-		while (current.next != null) {
-			current = current.next;
+		while (current.getNext() != null) {
+			current = current.getNext();
 		}
-		node.next = current.next;
-		current.next = node;
+		node.setNext(current.getNext() );
+		current.setNext(node);
 	}
 
 	public void delete(T key) {
@@ -32,18 +32,18 @@ public class LnkLst<T> {
 			return;
 		}
 
-		if (head.data == key) {
+		if (head.getData() == key) {
 			head = null;
 		}
 
 		LstNode<T> previous = null;
 		LstNode<T> current = head;
-		while (current != null && current.data != key) {
+		while (current != null && current.getData() != key) {
 			previous = current;
-			current = current.next;
+			current = current.getNext();
 		}
 		if (current != null) {
-			previous.next = current.next;
+			previous.setNext(current.getNext() );
 			current = null;
 		} else {
 			System.out.println("No match key");
@@ -53,15 +53,15 @@ public class LnkLst<T> {
 	public void reverse() {
 		LstNode<T> previous = null;
 		LstNode<T> current = head;
-		LstNode<T> tail = head.next;
+		LstNode<T> tail = head.getNext();
 
-		while (current.next != null) {
-			current.next = previous;
+		while (current.getNext() != null) {
+			current.setNext(previous);
 			previous = current;
 			current = tail;
-			tail = tail.next;
+			tail = tail.getNext();
 		}
-		current.next = previous;
+		current.setNext(previous);
 		head = current;
 	}
 
@@ -71,7 +71,7 @@ public class LnkLst<T> {
 		LstNode<T> current = head;
 		while (current != null) {
 			len++;
-			current = current.next;
+			current = current.getNext();
 		}
 		return len;
 	}
@@ -84,8 +84,8 @@ public class LnkLst<T> {
 
 		LstNode<T> current = head;
 		while (current != null) {
-			System.out.print(current.data + " ");
-			current = current.next;
+			System.out.print(current.getData() + " ");
+			current = current.getNext();
 		}
 		System.out.println("\n=======================");
 	}
